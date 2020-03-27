@@ -31,8 +31,6 @@ font-family: Lato; font-size: 24px; font-style: regular; font-variant: regular; 
 	-moz-perspective: 600px;
 	perspective: 600px;
 	margin-left:10px;
-	border: solid 1px #ddd;
-	border-radius:10px;
 	padding:10px;
 
 }
