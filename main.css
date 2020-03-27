@@ -147,7 +147,7 @@ z-index: 999;
     h3 {font-size:22px;}
     .container{display:none;}
     .panel {width:100%;padding-top:50%;position:relative;;}
-    .back {position:relative}
+    .back {position:relative; height:auto}
     #mapdiv {width:99%;height:25%;position:fixed; top:0;left:0;border:none;border-bottom:solid 5px #fff;float:none;border-radius:0;}
     #spacer {display:none;}
 	#mobileContainer{margin-top:75px;display:block;width:100%;height:75%;}
