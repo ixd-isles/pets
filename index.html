@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Our Other Team</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="description" content="testing guerilla haiku in the TL">
+<!-- include plugin for reading exif data from images -->
+        <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.4/randomColor.min.js"></script> -->
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+ <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+       
+        
+  <!-- Tabletop to access Google spreadsheets - THANK YOU AMAZING HUMANS WHO CREATED THIS!! LOVE LOVE LOVE-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.js"></script>
+
+        
+        
+		<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+ <!-- FontAaaawwwwesome -->  
+  <link href="fontawesome/css/all.css" rel="stylesheet"> 
+        
+        <link rel="stylesheet" href="main.css">
+
+        <script src="jquery/jquery-1.6.4.min.js"></script>
+
+    </head>
+    <body>
+
+        
+        
+<!-- <div id = "mapdiv"></div> -->
+<!--<div id="spacer"></div> -->
+<div id= "titlebar">Our Other Team</div>
+<div id = "container" class="container"></div>
+
+<div id="mobileContainer">
+<div id="mobilePicContainer">
+<img id="mobilePic" class="back">
+</div>
+<div id="mobileHaikuContainer">
+<div id="mobileHaiku"></div>
+</div>
+</div>
+
+<script type = "text/javascript">
+/* var map = L.map('mapdiv',{
+} ).setView([37.7857592, -122.4182743], 15);
+mapboxBase = L.tileLayer('https://api.mapbox.com/styles/v1/ixd-maps/cjzkdbpoy5jn81clijbwfi0xe/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiaXhkLW1hcHMiLCJhIjoiY2p5aTN0Mzd3MDZkbzNpbnRiMG5uMWJhOSJ9.wV8VsOd5tquU3U-NCnoFQA', {
+	maxZoom:20,
+	attribution: 'ixd // mapbox'
+});
+mapboxBase.addTo(map);
+*/
+
+var scroll = 0;
+        
+Tabletop.init({
+    	key: "https://docs.google.com/spreadsheets/d/1tuC5M-aqaQtpxM9gCr1LjTg9zRFYq7UH8hT3lAbqqeM/edit?usp=sharing",
+    	callback: loaddata,
+    	simpleSheet: true,
+    	debug: false
+    });
+
+/*
+    function haikuClean(a){
+ var cleaned = a.replace(/[/]/g, '<br>');
+ return cleaned;
+
+}
+*/
+
+function getRandom(len){
+  return Math.floor(Math.random() * len);
+}
+    
+function cleanlink(e) {
+
+var len = e.length;
+var pos = e.indexOf("=");
+var id = [];
+for (i=pos; i<len; i++) {
+ id+=e[i];
+}
+
+var cleanlink = "https://drive.google.com/thumbnail?id" + id + "&sz=w500";
+return cleanlink;
+
+}
+
+
+var data = [];
+var graffiti = new L.featureGroup({});
+var querylayer = new L.featureGroup({});
+var coordinateArray=[];
+var colorArray =[]; 
+var petArray =[];
+var staffArray=[]; 
+var siteArray=[];
+var haikuArray =[];
+var picArray=[];
+var mobilePics=[];
+var titleArray=[];
+    
+/* grafMarker = L.CircleMarker.extend({
+				options:{
+					data: []
+				}
+			});
+*/
+
+function loaddata(fulldata) {
+data = fulldata;
+
+var i=0;
+ while (i<=data.length-1) {
+
+//  var haikucolor = randomColor({hue: 'monochrome', luminosity:'light'});     
+  var haiku = data[i].Bio;
+  var petname = data[i].Pet_name;
+  var staff = data[i].Your_first_name;
+  
+ /* var latlng = [data[i].Lat, data[i].Lng];
+
+  
+  coordinateArray.push(latlng);*/
+//  colorArray.push(haikucolor);
+  haikuArray.push(haiku);
+  staffArray.push(staff);
+  petArray.push(petname);
+  
+ /* var add = data[i].Pubadd;
+  siteArray.push(add);
+
+    
+
+	
+			var marker = new grafMarker(latlng, {
+				radius: 10,
+				weight:5,
+				color:'#000000',
+				opacity:.7,
+				fillOpacity: 1,
+				fillColor:haikucolor,
+				data: data[i],
+				});
+			
+			graffiti.addLayer(marker);
+     graffiti.addTo(map);
+    var bounds = graffiti.getBounds();
+ */
+ 
+ var grid = document.createElement('div');
+ 
+  var panel = document.createElement('div');
+     panel.className = 'panel';
+     panel.id = i;
+ //	panel.style.background = haikucolor;  
+ 
+   var titlecard = document.createElement('div');
+ titlecard.innerHTML = "<h3 style='padding-left:10px;margin-top:0;'>" + petname + "</h3>" + "<p style='margin-top:-20px;padding-left:10px;'>Staff liaison: " + staff + "</p>";
+ 	 panel.appendChild(titlecard);
+//   titleArray.push(titlecard);
+	 
+  var front = document.createElement('div');
+  front.className = "back";
+     front.id = "front"+i;
+//	 front.style.background = haikucolor;
+     
+       var photolink = cleanlink(data[i].Photo);
+	 picArray.push(photolink);
+
+     var back = document.createElement('img');
+     back.className = 'back';
+      back.id = 'photo'+i;
+      back.src = photolink;
+	  
+	  mobilePics.push(back);
+	panel.appendChild(back);
+            
+            back.style.display = 'block';
+            front.style.display = 'none';
+
+     
+  front.innerHTML = "<hr><p>" + haiku + "</p>";
+
+
+     panel.appendChild(front);
+  document.getElementById('container').appendChild(panel);
+
+/*  map.fitBounds(bounds);  */
+   i++;
+ }
+ console.log(document.getElementById('container'));
+//var togg = 0; 
+        $('.panel').click(function (){
+            if(this.children.length > 1) {
+            if ( this.children[1].style.display == 'none') {
+                this.children[1].style.display = 'block';
+                this.children[2].style.display = 'none';
+            }
+                
+            else if (this.children[1].style.display == 'block') {
+                this.children[1].style.display = 'none';
+                this.children[2].style.display = 'block';            
+                
+            }
+            }
+ 
+			
+/*            moveMap(this.id); */
+            
+        });
+ $('.panel').hover(function (){
+            if(this.children.length > 1) {
+                
+            if ( this.children[1].style.display == 'none') {
+                this.children[1].style.display = 'block';
+                this.children[2].style.display = 'none';
+            }
+                
+            else if (this.children[1].style.display == 'block') {
+                this.children[1].style.display = 'none';
+                this.children[2].style.display = 'block';            
+                
+            }
+            }
+ /*                moveMap(this.id); */
+        });
+document.getElementById("mobilePic").src = picArray[0];
+document.getElementById("mobileHaiku").innerHTML = 
+"<h3 style='margin-top:10px;padding-left:10px;margin-bottom:0;'>" + petArray[0] + "</h3>" + "<p style='margin-top:0px;padding-left:10px;'>Staff liaison: " + staffArray[0] + "</p>"+
+"<hr><p style='font-size:100%'>" + haikuArray[0] + "</p>";
+// mobileHaikuContainer.style.background=colorArray[0];
+
+
+
+var next = document.createElement("div");
+		var prev = document.createElement("div");
+		prev.className = "previous";
+		next.className = "next";
+		
+		prev.innerHTML = "<i class='fa fa-angle-left fa-3x' ></i>";
+		next.innerHTML = "<i class='fa fa-angle-right fa-3x' ></i>";
+		
+		next.onclick = function () {scrollMob(1);}
+		prev.onclick = function () {scrollMob(-1);}
+		mobileContainer.appendChild(next);
+		mobileContainer.appendChild(prev);
+    
+} 
+
+function scrollMob(dir){
+
+	var place;
+	const picspace = document.getElementById("mobilePic");
+//	mobileContainer.style.background = colorArray[place];
+	if (scroll == haikuArray.length-1 && dir == 1) {
+		place = 0; 
+	}
+	
+	else {
+	 place=scroll+dir;
+	}
+	
+	if (scroll == 0 && dir == -1) {
+	 place = haikuArray.length-1;
+	}
+	
+	
+	picspace.src = picArray[place];
+
+	mobileHaiku.innerHTML = 
+	"<h3 style='margin-top:10px;padding-left:10px;margin-bottom:0;'>" + petArray[place] + "</h3>" + "<p style='margin-top:0px;padding-left:10px;'>Staff liaison: " + staffArray[place] + "</p>"+
+"<hr><p style='font-size:100%'>" + haikuArray[place] + "</p>";
+//	mobileHaikuContainer.style.background = colorArray[place];
+
+/*	moveMap(place); */
+	
+	scroll = place;
+
+}
+    
+/* function moveMap(id) {
+    querylayer.clearLayers();
+            var ll = coordinateArray[id];
+            var marker = new grafMarker(ll, {
+				radius: 20,
+				weight:10,
+				color:'#000',
+				opacity:.7,
+				fillOpacity: 1,
+				fillColor:colorArray[id],
+				});  
+    
+    var content=siteArray[id];     
+    marker.bindTooltip(content,{className:'toolTipCustom','maxWidth':'300px', direction:'top', permanent:true});
+
+    
+            querylayer.addLayer(marker);
+            map.fitBounds(querylayer.getBounds());
+			map.setZoom(17);
+            querylayer.addTo(map);
+            
+    
+}
+ */   
+</script>      
+      
+    </body>
+</html>
+    
+    
+
+
+    
+
+    
+    

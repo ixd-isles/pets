@@ -1,0 +1,140 @@
+h1, h2 { font-family: Lato; font-size: 48px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } 
+h3 { color: #106da8; font-family: Lato; font-size: 20px; font-style: regular; font-variant: regular; font-weight:500; line-height: 1.5em; } 
+p { font-family: Lato, sans serif; font-size: 16px; font-style: light; font-variant: light; line-height: 1.5 em; padding-left:10px; padding-right:20px;} 
+blockquote { font-family: Lato; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } 
+pre { font-family: Lato, sans serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
+
+
+#titlebar { color:#fff; background-color: #106da8; float:left; width:100%; position:fixed; top: 0; left: 0; padding: 20px; height:30px; z-index:999; 
+font-family: Lato; font-size: 24px; font-style: regular; font-variant: regular;  line-height: 1.5em; letter-spacing:1px;
+}
+.container{
+  width:100%;
+  margin-top:75px;
+}
+
+.grid{
+	width:290px;	
+}
+.titlecard {
+	width:290px;
+	
+}
+
+.panel{
+	float: left;
+	width: 300px;
+	height:375px;
+	position: relative;
+	font-size: .8em;
+	-webkit-perspective: 600px;
+	-moz-perspective: 600px;
+	perspective: 600px;
+	margin-left:10px;
+	border: solid 1px #ddd;
+	border-radius:10px;
+	padding:10px;
+
+}
+/* -- make sure to declare a default for every property that you want animated -- */
+/* -- general styles, including Y axis rotation -- */
+.back {
+	float: left;
+
+	width: inherit;
+	text-align: left;
+    padding-top:0;
+
+    border-radius:10px;
+    
+   
+
+	-webkit-transform: rotateX(0deg) rotateY(0deg);
+	-moz-transform: rotateX(0deg) rotateY(0deg);
+	transform: rotateX(0deg) rotateY(0deg);
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out; 
+}
+.back .flip  {
+	z-index: 100;
+	border-color: #eee;
+	background: #333;
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.front {
+	float: none;
+
+	width: inherit;
+	height: inherit;
+	color:#000;
+	text-align: left;
+        border-radius:10px;
+
+	-webkit-transform: rotateY(-180deg);
+	-moz-transform: rotateY(-179deg); /* setting to 180 causes an unnatural-looking half-flip */
+	transform: rotateY(-179deg);
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+
+	-webkit-transition: all .4s ease-in-out;
+	transition: all .4s ease-in-out; 
+}
+
+.front .flip {
+	z-index: 100;
+	background: #aaa;
+        border-radius:10px;
+
+	-webkit-transform: rotateX(0deg) rotateY(0deg);
+	-moz-transform: rotateX(0deg) rotateY(0deg);
+	transform: rotateX(0deg) rotateY(0deg);
+}
+
+#mapdiv {position:fixed;top:0;left:0;float:left;z-index:999;width:300px;background:'#fff';height:300px;border:solid 13px #fff;border-radius:10px;border-right:solid 10px #fff;}
+#spacer {height:300px;width:310px;float:left}
+#mobileContainer {display:none}
+
+.previous {float:left;border:none; border-radius:8px; padding:10px;z-index:999;position:absolute; top:35%; left:10px;background-color:#ffffff;opacity:0.5;}
+.next{float:right;border:none; border-radius:8px; padding:10px;z-index:999;position:absolute; top:35%;right:10px;background-color:#ffffff;opacity:0.5;}
+
+.toolTipCustom{font-size:120%;font-family:Lato;}
+
+#bigquote {float:left;padding-top:0;padding-left:5px;}
+
+@media screen and (max-width: 600px) {
+    h3 {font-size:22px;}
+    .container{display:none;}
+    .panel {width:100%;padding-top:50%;position:relative;;}
+    .back {position:relative}
+    #mapdiv {width:99%;height:25%;position:fixed; top:0;left:0;border:none;border-bottom:solid 5px #fff;float:none;border-radius:0;}
+    #spacer {display:none;}
+	#mobileContainer{margin-top:75px;display:block;width:100%;height:75%;}
+	#mobilePicContainer{width:100%;height:auto;}
+    #mobileHaikuContainer{z-index:999;background:#fff;width:100%;height:auto;padding:8px;border-top:solid 5px #fff;}
+	#mobileHaiku{margin-top:10px;font-family:Roboto; font-size:90%;padding-left:20px; padding-right:30px;letter-spacing:.05em}
+	#mobilePic{margin-bottom:10px;}
+	
+	
+}
+
+
