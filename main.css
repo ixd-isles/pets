@@ -74,7 +74,7 @@ font-family: Lato; font-size: 24px; font-style: regular; font-variant: regular; 
 
 .front {
 	float: none;
-	background-color:#fff;
+	background-color:#ffffff;
 	width: inherit;
 	height: inherit;
 	overflow:scroll;
@@ -101,7 +101,7 @@ z-index: 999;
 
 .front .flip {
 	z-index: 999;
-	background: #aaa;
+	background-color: #ffffff;
         border-radius:10px;
 
 	-webkit-transform: rotateX(0deg) rotateY(0deg);
