@@ -80,7 +80,7 @@ font-family: Lato; font-size: 24px; font-style: regular; font-variant: regular; 
 	color:#000;
 	text-align: left;
         border-radius:10px;
-
+z-index: 999;
 	-webkit-transform: rotateY(-180deg);
 	-moz-transform: rotateY(-179deg); /* setting to 180 causes an unnatural-looking half-flip */
 	transform: rotateY(-179deg);
