@@ -32,6 +32,7 @@ font-family: Lato; font-size: 24px; font-style: regular; font-variant: regular; 
 	perspective: 600px;
 	margin-left:10px;
 	padding:10px;
+	overflow:scroll;
 
 }
 /* -- make sure to declare a default for every property that you want animated -- */
