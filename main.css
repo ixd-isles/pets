@@ -78,6 +78,7 @@ font-family: Lato; font-size: 24px; font-style: regular; font-variant: regular; 
 	background-color:#fff;
 	width: inherit;
 	height: inherit;
+	overflow:scroll;
 	color:#000;
 	text-align: left;
         border-radius:10px;
