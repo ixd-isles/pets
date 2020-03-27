@@ -99,7 +99,7 @@ z-index: 999;
 }
 
 .front .flip {
-	z-index: 100;
+	z-index: 999;
 	background: #aaa;
         border-radius:10px;
 
